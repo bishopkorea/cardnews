@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 속 한국 문화유산 왜곡 시정</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🏛️';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            border-left: 6px solid #e53e3e;
+        }
+        
+        .intro h2 {
+            color: #c53030;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .intro p {
+            color: #2d3748;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .case-section {
+            margin-bottom: 50px;
+        }
+        
+        .case-section h3 {
+            font-size: 1.8em;
+            color: #2d3748;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .case-card {
+            background: #f7fafc;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        
+        .case-card h4 {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .case-card h4::before {
+            content: '⚠️';
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .error-box {
+            background: #fff5f5;
+            border-left: 4px solid #fc8181;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .error-box .label {
+            color: #c53030;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .error-box .content {
+            color: #2d3748;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+        
+        .correct-box {
+            background: #f0fff4;
+            border-left: 4px solid #68d391;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .correct-box .label {
+            color: #22543d;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .correct-box .content {
+            color: #2d3748;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+        
+        .impact-section {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 40px 0;
+        }
+        
+        .impact-section h3 {
+            color: #d97706;
+            font-size: 1.7em;
+            margin-bottom: 20px;
+        }
+        
+        .impact-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .impact-list li {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 10px;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .impact-list li::before {
+            content: '💡';
+            position: absolute;
+            left: 15px;
+            font-size: 1.5em;
+        }
+        
+        .action-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .action-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .action-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+        
+        .reference {
+            background: #edf2f7;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+            font-size: 0.95em;
+            color: #4a5568;
+        }
+        
+        .reference h4 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .reference a {
+            color: #667eea;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .reference a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .header .subtitle {
+                font-size: 1em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .case-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI 속 한국 문화유산 왜곡</h1>
+            <p class="subtitle">잘못된 정보를 바로잡고 우리의 유산을 지킵시다</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>🚨 왜 이 문제가 중요한가요?</h2>
+                <p>생성형 AI는 전 세계 수억 명이 사용하는 도구가 되었습니다. 하지만 AI가 생성하는 한국 문화유산 이미지와 설명에는 심각한 오류가 존재합니다. 잘못된 정보가 확산되면 우리 문화유산에 대한 왜곡된 인식이 전 세계에 퍼질 수 있습니다.</p>
+                <p><strong>지금 바로잡지 않으면, AI를 통해 학습하는 미래 세대는 왜곡된 한국 문화를 배우게 됩니다.</strong></p>
+            </div>
+            
+            <div class="case-section">
+                <h3>📋 주요 왜곡 사례</h3>
+                
+                <div class="case-card">
+                    <h4>사례 1: 경주 첨성대의 왜곡</h4>
+                    <div class="error-box">
+                        <div class="label">❌ AI가 생성한 이미지</div>
+                        <div class="content">
+                            • 첨성대를 중국식 전통 건축물 형태로 묘사<br>
+                            • 여러 층의 목조 건물에 처마와 기와지붕이 있는 탑 형태<br>
+                            • 주변에 중국식 건축 양식의 구조물들 배치<br>
+                            • 실제 첨성대의 원통형 석조 구조와 전혀 다른 모습
+                        </div>
+                    </div>
+                    <div class="correct-box">
+                        <div class="label">✅ 실제 첨성대</div>
+                        <div class="content">
+                            • 신라시대(632-647년) 천문 관측대<br>
+                            • 높이 9.17m의 원통형 석조 건축물<br>
+                            • 362개의 화강암 돌을 정교하게 쌓아 올린 구조<br>
+                            • 국보 제31호, 현존하는 동아시아 최고(最古)의 천문대<br>
+                            • 단순하면서도 과학적인 한국 고유의 건축 양식
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-card">
+                    <h4>사례 2: 석굴암의 왜곡</h4>
+                    <div class="error-box">
+                        <div class="label">❌ AI가 생성한 이미지</div>
+                        <div class="content">
+                            • 인도나 동남아시아 양식의 불상으로 표현<br>
+                            • 석굴의 구조와 배치가 실제와 완전히 다름<br>
+                            • 본존불의 자세와 표정, 광배의 형태 등이 왜곡됨<br>
+                            • 주변 보살상과 신장상의 배치 및 모습이 부정확함
+                        </div>
+                    </div>
+                    <div class="correct-box">
+                        <div class="label">✅ 실제 석굴암</div>
+                        <div class="content">
+                            • 통일신라시대(751년 건립 시작) 불교 석굴 사원<br>
+                            • 화강암으로 건축된 인공 석굴로 세계적으로 유례없는 건축 기법<br>
+                            • 본존불은 높이 3.26m의 석가여래좌상으로 완벽한 균형미를 자랑<br>
+                            • 국보 제24호이자 유네스코 세계문화유산<br>
+                            • 과학적 설계와 예술적 완성도가 조화를 이룬 신라 불교 예술의 정수
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-card">
+                    <h4>사례 3: 수원화성의 왜곡</h4>
+                    <div class="error-box">
+                        <div class="label">❌ AI가 생성한 이미지</div>
+                        <div class="content">
+                            • 중국 만리장성이나 베이징 성곽과 유사한 형태로 표현<br>
+                            • 화성의 독특한 과학적 방어 시설(치성, 공심돈 등)이 누락<br>
+                            • 건축 양식과 구조가 중국식으로 변형됨<br>
+                            • 실제 화성의 아름다운 곡선미와 조형미가 사라짐
+                        </div>
+                    </div>
+                    <div class="correct-box">
+                        <div class="label">✅ 실제 수원화성</div>
+                        <div class="content">
+                            • 조선 정조대(1794-1796년) 건설된 계획도시의 성곽<br>
+                            • 동서양 축성술의 장점을 결합한 과학적 성곽 건축<br>
+                            • 총 길이 5.7km, 4대문과 다양한 방어시설로 구성<br>
+                            • 실용성과 예술성을 겸비한 조선시대 건축의 백미<br>
+                            • 유네스코 세계문화유산으로 등재된 한국의 독창적 성곽
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-card">
+                    <h4>사례 4: 얼굴무늬 수막새의 왜곡</h4>
+                    <div class="error-box">
+                        <div class="label">❌ AI가 생성한 이미지</div>
+                        <div class="content">
+                            • 중국이나 일본의 도깨비 얼굴 형상으로 표현<br>
+                            • 실제 수막새의 해학적이고 친근한 표정과 다른 무서운 모습<br>
+                            • 문양의 세부적인 특징과 의미가 무시됨<br>
+                            • 한국 고유의 미적 감각과 상징성이 사라짐
+                        </div>
+                    </div>
+                    <div class="correct-box">
+                        <div class="label">✅ 실제 얼굴무늬 수막새</div>
+                        <div class="content">
+                            • 통일신라시대 건축물의 지붕 장식 기와<br>
+                            • 귀신을 쫓고 복을 부르는 의미의 해학적인 얼굴 문양<br>
+                            • 큰 눈, 넓은 코, 웃는 입 등 친근하고 익살스러운 표정<br>
+                            • 국립중앙박물관 소장 (보물 제1563호)<br>
+                            • 신라인의 낙천적 세계관과 뛰어난 조형 감각을 보여주는 문화재
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-card">
+                    <h4>사례 5: 남사당놀이의 왜곡</h4>
+                    <div class="error-box">
+                        <div class="label">❌ AI가 생성한 설명 및 이미지</div>
+                        <div class="content">
+                            • 중국 전통 곡예나 일본 가부키와 혼동<br>
+                            • 남사당놀이의 고유한 여섯 가지 놀이(풍물, 버나, 살판, 어름, 덧뵈기, 덜미)가 정확히 표현되지 않음<br>
+                            • 남사당패의 역사적 배경과 문화적 의의가 누락<br>
+                            • 의상과 소품, 공연 방식이 다른 나라 문화로 대체됨
+                        </div>
+                    </div>
+                    <div class="correct-box">
+                        <div class="label">✅ 실제 남사당놀이</div>
+                        <div class="content">
+                            • 조선시대부터 전해 내려온 한국의 대표적 전통 공연 예술<br>
+                            • 유네스코 인류무형문화유산 등재 (2009년)<br>
+                            • 국가무형문화재 제3호로 지정<br>
+                            • 풍물, 버나(대접돌리기), 살판(땅재주), 어름(줄타기), 덧뵈기(탈춤), 덜미(꼭두각시놀음)의 여섯 가지 놀이로 구성<br>
+                            • 서민 문화의 정수이자 한국 전통 예능의 종합 예술
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="impact-section">
+                <h3>💭 이런 왜곡이 미치는 영향</h3>
+                <ul class="impact-list">
+                    <li><strong>문화적 정체성 훼손:</strong> 한국 문화유산이 다른 나라의 것으로 오인되거나, 고유한 특징과 가치가 사라져 문화적 정체성이 흐려집니다.</li>
+                    <li><strong>교육적 피해:</strong> AI를 학습 도구로 활용하는 전 세계 학생들이 잘못된 정보를 학습하게 되어, 한국 문화에 대한 왜곡된 인식이 확산됩니다.</li>
+                    <li><strong>관광 산업 영향:</strong> 잘못된 이미지로 인해 실제 문화유산에 대한 기대와 이해가 왜곡되어, 문화 관광의 질이 저하될 수 있습니다.</li>
+                    <li><strong>디지털 시대의 문화 주권:</strong> AI가 생성하는 콘텐츠는 빠르게 전파되고 확산되므로, 초기에 바로잡지 않으면 왜곡된 정보가 사실처럼 굳어질 수 있습니다.</li>
+                    <li><strong>미래 세대의 인식:</strong> AI 네이티브 세대는 AI가 생성한 정보를 그대로 받아들일 가능성이 높아, 잘못된 문화 인식이 대물림될 위험이 있습니다.</li>
+                </ul>
+            </div>
+            
+            <div class="action-section">
+                <h3>🌍 함께 행동합시다!</h3>
+                <p>AI 속 문화유산 왜곡을 바로잡는 글로벌 캠페인에 참여하세요.<br>
+                여러분의 작은 참여가 우리 문화유산을 지키는 큰 힘이 됩니다.</p>
+                <a href="https://www.woollimkorea.net/main.jsp" class="cta-button" target="_blank">참여하기 →</a>
+            </div>
+            
+            <div class="reference">
+                <h4>📚 참고 자료</h4>
+                <p><strong>국립문화유산연구원 - 국가유산 지식이음:</strong><br>
+                <a href="https://portal.nrich.go.kr/kor/page.do?menuIdx=1049" target="_blank">https://portal.nrich.go.kr/kor/page.do?menuIdx=1049</a></p>
+                <p style="margin-top: 15px;"><strong>반크 청년연구원 제작 콘텐츠:</strong><br>
+                • <a href="https://youtube.com/shorts/nH2h1JidqAw" target="_blank">이게 AI가 그린 경주라고?!</a><br>
+                • <a href="https://www.instagram.com/reel/DQYGzRPiaOz/" target="_blank">여러분이 아는 첨성대는 어떤 모습인가요?</a><br>
+                • <a href="https://www.instagram.com/reel/DQaqrkkErYG/" target="_blank">여러분이 아는 석굴암은 어떤 모습인가요?</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
